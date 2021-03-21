@@ -25,8 +25,8 @@ class Query(graphene.ObjectType):
 
     def resolve_produit(self, info):
         return[
-            Produit(nom="Machine à laver", prix="150", poids="3"),
-            Produit(nom="Four micro-onde", prix="100", poids="1"),
+            Produit(nom="Machine à laver", prix="150", poids="300000"),
+            Produit(nom="Four micro-onde", prix="100", poids="10000"),
         ]
 
 
@@ -35,12 +35,11 @@ def test():
     return "coucou"
 
 
-@app.route("/soap/<prix>/<poids>/<distance>", methods=['GET'])
-def getPrixLivraison(prix, poids, distance):
+@app.route("/soap/<prix>/<poids>/", methods=['GET'])
+def getPrixTotal(prix, poids):
     client = Client(urlSOAP)
-    liv = client.service.livraison(poids, distance)
-    prixTotal = int(prix) + int(liv)
-    print(liv)
+    prixTotal = int(prix) + (1/100)*int(poids)
+    print(poids)
     res = [prixTotal]
     return str(res)
 
@@ -49,7 +48,7 @@ def getPrixLivraison(prix, poids, distance):
 def luhn(code):
     c = [int(x) for x in code[::-2]]
     u2 = [(2*int(y))//10+(2*int(y)) % 10 for y in code[-2::-2]]
-    return sum(c+u2) % 10 == 0
+    return jsonify({'result':  sum(c+u2) % 10 == 0})
 
 
 @app.route("/produit", methods=['GET'])

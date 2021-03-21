@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Catalogue de produit</h2>
+            <ul>
+                <!--<app-produit nomProduit="Dose de khabatisme" prixProduit="50" poidsProduit="10"></app-produit>
+                <app-produit nomProduit="Banane" prixProduit="50" poidsProduit="10"></app-produit>-->
+                <app-produit
+                *ngFor="let produit of produits" 
+                [nom]="produit.nom"
+                [prix]="produit.prix" 
+                [poids]="produit.poids" 
+                ></app-produit>
+            </ul>
+        </div>
+    </div>
+</div>

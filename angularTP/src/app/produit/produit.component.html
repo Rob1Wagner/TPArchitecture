@@ -1,0 +1,15 @@
+<li class="list-group-item">
+    <h4>Nom : {{nom}}</h4>
+    <h4>Prix : {{prix}} $</h4>
+    <h4>Poids : {{poids}} g</h4>
+    <br/>
+    <br/>
+    <h4>Prix avec le poids : {{prixTotal}} $</h4>
+    <button class="btn btn-success" (click)="onTotalClicked()">Total</button>
+    <br/>
+    <br/>
+    <br/>
+    <h4>Code de votre carte ?</h4>
+    <input type="number" class="form-control" [(ngModel)]="numeroCarte"/>
+    <button class="btn btn-success" (click)="onCommandClicked()">Commander</button>
+</li>
